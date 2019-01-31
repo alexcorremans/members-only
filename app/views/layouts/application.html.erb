@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MembersOnly</title>
+    <title>Members Only</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,8 +10,16 @@
   </head>
 
   <body>
+    <% flash.each do |name, message| %>
+      <%= content_tag :div, message, class: name %>
+    <% end %>
     <%= yield %>
     <br>
-    <%= link_to "Sign in", login_path %> | <%= link_to "Sign out", logout_path, method: :delete %>
+    <%= link_to "Home", root_path %> | 
+    <% if logged_in? %>
+      <%= link_to "Sign out", logout_path, method: :delete %>
+    <% else %>
+      <%= link_to "Sign in", login_path %>
+    <% end %>
   </body>
 </html>

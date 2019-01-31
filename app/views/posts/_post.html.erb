@@ -1,9 +1,8 @@
-<li>
-  <ul>
-    <li><%= post.title %></li>
-    <li><%= post.body %></li>
-    <% if logged_in? %>
-      <li>Author: <%= post.user.name %></li>
-    <% end %>
-  </ul>
-</li>
+<p>
+  <h2><%= post.title %></h2>
+  <p><%= post.body %></p>
+  <% if logged_in? %>
+    <p>Author: <%= post.user.name %></p>
+  <% end %>
+</p>
+<hr>

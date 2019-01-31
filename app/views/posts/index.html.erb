@@ -1,4 +1,7 @@
 <h1>All posts</h1>
-<ul>
+<% if logged_in? %>
+  <%= link_to "New post", new_post_path %>
+<% end %>
+<p>
   <%= render @posts %>
-</ul>
+</p>
