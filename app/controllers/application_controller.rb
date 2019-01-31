@@ -21,4 +21,8 @@ class ApplicationController < ActionController::Base
     session[:user_id] = nil
     cookies.delete(:remember_token)
   end
+
+  def logged_in?
+    !current_user.nil?
+  end
 end

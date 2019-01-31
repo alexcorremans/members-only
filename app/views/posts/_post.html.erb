@@ -1,0 +1,9 @@
+<li>
+  <ul>
+    <li><%= post.title %></li>
+    <li><%= post.body %></li>
+    <% if logged_in? %>
+      <li>Author: <%= post.user.name %></li>
+    <% end %>
+  </ul>
+</li>
