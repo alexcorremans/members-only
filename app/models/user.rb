@@ -8,16 +8,18 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }
 
-  before_create :remember
+  def User.digest(string)
+    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
+    BCrypt::Password.create(string, cost: cost)
+  end
 
   def remember
     self.remember_token = SecureRandom.urlsafe_base64
-    self.remember_digest = Digest::SHA1.hexdigest(remember_token.to_s)
+    update_attribute(:remember_digest, User.digest(remember_token))
   end
-=begin
-  def remember
-    self.remember_token = SecureRandom.urlsafe_base64
-    update_attribute(:remember_digest, Digest::SHA1.hexdigest(remember_token.to_s))
+
+  def authenticated?(remember_token)
+    return false if remember_digest.nil?
+    BCrypt::Password.new(remember_digest).is_password?(remember_token)
   end
-=end
 end
