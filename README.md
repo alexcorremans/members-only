@@ -1,24 +1,9 @@
-# README
+# Members Only
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The aim of this project was to build my own authentication system in Rails, including the possibility to remember logged in users after they close the browser. 
 
-Things you may want to cover:
+When logged in, members can submit posts and view other member's posts including the author's name. When logged out, users can see the posts but not the author names, and they can't create new posts. 
 
-* Ruby version
+Apart from displaying error messages in red, this project has zero styling at the moment. My plan is to get back to this and other projects later to practise CSS. 
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+From The Odin Project's [curriculum](https://www.theodinproject.com/lessons/authentication)
