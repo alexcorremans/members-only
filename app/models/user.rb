@@ -9,8 +9,7 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 6 }
 
   def User.digest(string)
-    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
-    BCrypt::Password.create(string, cost: cost)
+    Digest::SHA1.hexdigest(string)
   end
 
   def remember
@@ -20,6 +19,6 @@ class User < ApplicationRecord
 
   def authenticated?(remember_token)
     return false if remember_digest.nil?
-    BCrypt::Password.new(remember_digest).is_password?(remember_token)
+    remember_digest == User.digest(remember_token)
   end
 end
